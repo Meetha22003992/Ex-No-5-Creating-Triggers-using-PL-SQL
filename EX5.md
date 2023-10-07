@@ -14,11 +14,40 @@
 
 ### Program:
 ### Create employee table
+```
+CREATE TABLE employee (empid INT,empname VARCHAR(10),dept VARCHAR(10),salary float);
+```
 
 ### Create salary_log table
+```
+CREATE TABLE salary_log ( log_id INT AUTO_INCREMENT PRIMARY KEY,empid INT,empname VARCHAR(10),old_salary float,new_salary float,update_date DATE);
+```
 
 ### PLSQL Trigger code
+```
+DELIMITER //
 
+CREATE TRIGGER log_salary_update
+AFTER UPDATE ON employee
+FOR EACH ROW
+BEGIN
+    IF OLD.salary <> NEW.salary THEN
+        INSERT INTO salary_log (empid, empname, old_salary, new_salary, update_date)
+        VALUES (NEW.empid, NEW.empname, OLD.salary, NEW.salary, NOW());
+    END IF;
+END //
+
+DELIMITER ;
+
+SELECT * FROM employee;
+
+SELECT * FROM salary_log;
+```
 ### Output:
+![image](https://github.com/Meetha22003992/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/119401038/d04ca3f7-d710-47c7-9ee5-2a8d75d44175)
+
+![image](https://github.com/Meetha22003992/Ex-No-5-Creating-Triggers-using-PL-SQL/assets/119401038/e57b43d3-226d-4f92-a94d-65c480f7cdfb)
+
 
 ### Result:
+Thus triggered code is created successfully
