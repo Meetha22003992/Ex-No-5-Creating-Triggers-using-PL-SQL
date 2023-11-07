@@ -1,5 +1,7 @@
 # Ex. No: 5 Creating Triggers using PL/SQL
 
+## DATE: 1.09.2023
+
 ### AIM: To create a Trigger using PL/SQL.
 
 ### Steps:
@@ -14,14 +16,14 @@
 
 ### Program:
 ### Create employee table
-```
+
 CREATE TABLE employee (empid INT,empname VARCHAR(10),dept VARCHAR(10),salary float);
-```
+
 
 ### Create salary_log table
-```
+
 CREATE TABLE salary_log ( log_id INT AUTO_INCREMENT PRIMARY KEY,empid INT,empname VARCHAR(10),old_salary float,new_salary float,update_date DATE);
-```
+
 
 ### PLSQL Trigger code
 ```
